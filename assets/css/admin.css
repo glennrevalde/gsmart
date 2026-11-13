@@ -1,0 +1,84 @@
+/* GSMaRT admin area. Loaded after site.css and reuses its tokens, buttons and fields. */
+
+.admin { background: var(--tint); }
+
+.admin-top { background: var(--white); border-bottom: 1px solid var(--line); }
+.admin-top__in { display: flex; flex-wrap: wrap; align-items: center; gap: .25rem 1.5rem; min-height: 60px; padding-block: .4rem; }
+.admin-top .brand { margin-right: 0; }
+.admin-top__tag { margin-left: .5rem; font: 500 .875rem var(--body); color: var(--gray); }
+.admin-nav { display: flex; flex-wrap: wrap; gap: 0 1.25rem; margin-right: auto; }
+.admin-nav a { display: inline-flex; align-items: center; min-height: 44px; font-size: .9375rem; font-weight: 500; color: var(--graphite); text-decoration: none; border-bottom: 3px solid transparent; }
+.admin-nav a:hover { color: var(--navy); border-bottom-color: var(--line-strong); }
+.admin-nav a[aria-current="page"] { color: var(--navy); font-weight: 600; border-bottom-color: var(--blue); }
+.admin-top__out { margin-left: auto; }
+
+.admin-main { padding-block: clamp(1.25rem, 3vw, 2rem) 4rem; }
+.admin-main h1 { font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2rem); }
+.admin-main h2 { font-size: 1.1875rem; margin-bottom: .9rem; }
+
+.admin-bar { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: .75rem 1.5rem; margin-bottom: 1.1rem; }
+.admin-bar__meta { margin: .3rem 0 0; color: var(--gray); font-size: .9375rem; }
+.admin-crumb { margin: 0 0 .3rem; font-size: .875rem; color: var(--gray); }
+.admin-lead { color: var(--graphite); max-width: 46rem; margin-bottom: 1.1rem; }
+.admin-dim { color: var(--gray); font-size: .875rem; }
+
+.admin-card { background: var(--white); border: 1px solid var(--line); border-radius: 8px; box-shadow: var(--shadow-1); padding: clamp(1.1rem, 3vw, 1.6rem); margin-bottom: 1.25rem; }
+.admin-card--narrow { max-width: 27rem; margin: clamp(1rem, 6vh, 4rem) auto 0; }
+.admin-card--narrow h1 { margin-bottom: 1rem; }
+.admin-card--left { margin-left: 0; margin-top: 0; }
+.admin-form .field { margin-bottom: 1.1rem; }
+.admin-form .form-grid .field { margin-bottom: 0; }
+.admin-save { display: flex; flex-wrap: wrap; align-items: center; gap: .75rem 1rem; margin: 0 0 2rem; }
+.admin-danger { border-color: #E3C2BE; }
+.admin-danger h2 { color: #7D241C; }
+
+.admin-msg { margin: 0 0 1.1rem; padding: .75rem 1rem; border-left: 4px solid var(--ok); background: #E8F4EE; color: #17503A; font-weight: 500; border-radius: 0 4px 4px 0; }
+.admin-msg--error { border-left-color: var(--bad); background: #FBEDEB; color: #7D241C; }
+
+.admin-tabs { display: flex; gap: 0 1.5rem; overflow-x: auto; margin-bottom: 1rem; border-bottom: 1px solid var(--line-strong); }
+.admin-tabs a { flex: none; display: inline-flex; align-items: center; min-height: 44px; margin-bottom: -1px; font-size: .9375rem; font-weight: 500; color: var(--gray); text-decoration: none; border-bottom: 3px solid transparent; white-space: nowrap; }
+.admin-tabs a:hover { color: var(--navy); }
+.admin-tabs a[aria-current="true"] { color: var(--navy); font-weight: 600; border-bottom-color: var(--blue); }
+
+.admin-table-wrap { background: var(--white); border: 1px solid var(--line); border-radius: 8px; box-shadow: var(--shadow-1); overflow: hidden; }
+.admin-table { width: 100%; border-collapse: collapse; font-size: .9375rem; }
+.admin-table th { text-align: left; padding: .7rem 1rem; font-size: .8438rem; font-weight: 600; color: var(--gray); background: #F4F6F9; border-bottom: 1px solid var(--line); white-space: nowrap; }
+.admin-table td { padding: .8rem 1rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+.admin-table tr:last-child td { border-bottom: 0; }
+.admin-table tbody tr:hover { background: #FAFBFC; }
+.admin-actions { white-space: nowrap; }
+.admin-actions a { display: inline-flex; align-items: center; min-height: 36px; margin-right: .9rem; font-weight: 500; }
+.admin-inline { display: flex; flex-wrap: wrap; align-items: center; gap: .1rem .9rem; }
+.admin-link { min-height: 36px; padding: 0; background: none; border: 0; font: 500 .9375rem var(--body); color: var(--blue); text-decoration: underline; text-underline-offset: .18em; cursor: pointer; }
+.admin-link:hover { color: var(--blue-deep); }
+
+/* Status as plain text with a small mark */
+.status { display: inline-flex; align-items: center; gap: .45rem; font-weight: 500; white-space: nowrap; }
+.status::before { content: ""; width: .55rem; height: .55rem; border-radius: 50%; background: currentColor; }
+.status--new, .status--on { color: var(--blue); }
+.status--in_progress { color: var(--warn); }
+.status--closed, .status--off { color: var(--gray); }
+
+.admin-split { display: grid; gap: 1.25rem; align-items: start; }
+@media (min-width: 960px) { .admin-split { grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); } }
+.admin-dl > div { display: grid; grid-template-columns: 10rem minmax(0, 1fr); gap: 1rem; padding: .55rem 0; border-bottom: 1px solid var(--line); }
+.admin-dl dt { color: var(--gray); font-size: .9375rem; }
+.admin-dl dd { overflow-wrap: anywhere; }
+.admin-dl + h2 { margin-top: 1.5rem; }
+.admin-message { padding: 1rem 1.1rem; background: #F7F9FB; border: 1px solid var(--line); border-radius: 6px; overflow-wrap: anywhere; line-height: 1.65; }
+
+.admin-empty { padding: 2.5rem 1.5rem; background: var(--white); border: 1px dashed var(--line-strong); border-radius: 8px; text-align: center; }
+.admin-empty h2, .admin-empty h1 { margin-bottom: .5rem; }
+.admin-pager { display: flex; align-items: center; justify-content: center; gap: 1rem; margin-top: 1.25rem; color: var(--gray); font-size: .9375rem; }
+
+/* Tables become stacked records on small screens */
+@media (max-width: 760px) {
+  .admin-table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .admin-table, .admin-table tbody, .admin-table tr, .admin-table td { display: block; width: 100%; }
+  .admin-table tr { padding: .6rem 0; border-bottom: 1px solid var(--line-strong); }
+  .admin-table tr:last-child { border-bottom: 0; }
+  .admin-table td { display: grid; grid-template-columns: 7.5rem minmax(0, 1fr); gap: .75rem; padding: .35rem 1rem; border: 0; }
+  .admin-table td::before { content: attr(data-label); color: var(--gray); font-size: .8438rem; padding-top: .1rem; }
+  .admin-dl > div { grid-template-columns: 1fr; gap: .1rem; }
+  .admin-top__out { margin-left: 0; }
+}

@@ -1,0 +1,45 @@
+# GSMaRT website: Apache rules.
+# Clean addresses need mod_rewrite and "AllowOverride All" for this folder.
+# Without them the site still works with plain addresses (systems.php, ...).
+
+Options -Indexes
+DirectoryIndex index.php
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Tells PHP that rewriting is active, so it can print clean addresses.
+    RewriteRule .* - [E=GSMART_REWRITE:1]
+
+    # Private folders are never served.
+    RewriteRule ^(config|includes|content|database|tools)(/|$) - [F,L]
+    RewriteRule (^|/)\. - [F,L]
+    RewriteRule \.(md|sql|log)$ - [F,L]
+
+    RewriteRule ^sitemap\.xml$ sitemap.php [L]
+    RewriteRule ^robots\.txt$ robots.php [L]
+
+    # /systems/laundry-management  ->  system.php?slug=laundry-management
+    RewriteRule ^systems/([a-z0-9-]+)/?$ system.php?slug=$1 [L,QSA]
+
+    # /about  ->  about.php
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME}.php -f
+    RewriteRule ^([a-z0-9-]+)/?$ $1.php [L,QSA]
+
+    # Anything else that does not exist  ->  404 page
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^ 404.php [L]
+</IfModule>
+
+<IfModule mod_headers.c>
+    <FilesMatch "\.(woff2|svg|png|jpg|webp|css|js)$">
+        Header set Cache-Control "public, max-age=2592000"
+    </FilesMatch>
+</IfModule>
+
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/css application/javascript application/json image/svg+xml application/xml
+</IfModule>
